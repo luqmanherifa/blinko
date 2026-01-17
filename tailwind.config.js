@@ -6,6 +6,13 @@ export default {
       fontFamily: {
         sans: ["Work Sans", "sans-serif"],
       },
+      colors: {
+        crimsondeep: "#880D1E",
+        rosebold: "#DD2D4A",
+        rosesoft: "#F26A8D",
+        blushlight: "#F49CBB",
+        aquamist: "#CBEEF3",
+      },
     },
   },
   plugins: [],
