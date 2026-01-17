@@ -19,7 +19,7 @@ export default function App() {
   if (!room) {
     return (
       <div style={{ padding: 24 }}>
-        <button onClick={startGame}>Create Room</button>
+        <button onClick={startGame}>Link Start</button>
       </div>
     );
   }
