@@ -17,21 +17,21 @@ export default function PlayingGame({
   return (
     <div className="min-h-screen bg-white flex flex-col p-6">
       {/* Compact Header */}
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex justify-between items-center mb-10">
         <div className="flex items-center gap-2">
-          <div className="bg-blushlight px-4 py-2 rounded-xl border-2 border-rosesoft">
-            <span className="text-sm font-black text-crimsondeep">
+          <div className="bg-white px-4 py-2 rounded-xl border-2 border-gray-200">
+            <span className="text-sm font-black text-indigospark">
               Soal {room.currentQuestion + 1}/{QUESTIONS.length}
             </span>
           </div>
-          <div className="bg-white px-4 py-2 rounded-xl border-2 border-rosesoft">
-            <span className="text-sm font-black text-rosebold">
+          <div className="bg-white px-4 py-2 rounded-xl border-2 border-gray-200">
+            <span className="text-sm font-black text-indigospark">
               #{myPosition} · {myScore}
             </span>
           </div>
         </div>
-        <div className="bg-rosebold px-4 py-2 rounded-xl border-b-4 border-crimsondeep flex items-center gap-2">
-          <TimerIcon className="w-4 h-4 text-white" />
+        <div className="bg-indigospark px-4 py-2 rounded-xl border-2 border-indigospark flex items-center gap-2">
+          <TimerIcon className="w-4 h-4 text-yellowpulse" />
           <span className="font-black text-lg text-white">{timeLeft}s</span>
         </div>
       </div>
@@ -40,8 +40,8 @@ export default function PlayingGame({
       <div className="flex-1 flex items-center justify-center">
         <div className="w-full max-w-2xl flex flex-col">
           {/* Question */}
-          <div className="bg-blushlight border-4 border-rosesoft rounded-3xl p-8 mb-4">
-            <h3 className="text-3xl font-black text-crimsondeep text-center leading-tight">
+          <div className="bg-yellowpulse/10 border-2 border-yellowpulse/30 rounded-3xl p-8 mb-6">
+            <h3 className="text-3xl font-black text-indigospark text-center leading-tight">
               {q.q}
             </h3>
           </div>
@@ -52,37 +52,35 @@ export default function PlayingGame({
               {sortedPlayers.slice(0, 3).map((p, index) => (
                 <div
                   key={p.id}
-                  className={`px-3 py-1.5 rounded-full flex items-center gap-1.5 ${
+                  className={`px-3 py-1.5 rounded-full flex items-center gap-1.5 border-2 ${
                     p.id === playerName
-                      ? "bg-rosebold"
+                      ? "bg-indigospark border-indigospark"
                       : index === 0
-                        ? "bg-rosesoft"
-                        : "bg-blushlight"
+                        ? "bg-yellowpulse/20 border-yellowpulse/40"
+                        : "bg-white border-gray-200"
                   }`}
                 >
                   <span
                     className={`text-xs font-black ${
-                      p.id === playerName || index === 0
-                        ? "text-white"
-                        : "text-rosebold"
+                      p.id === playerName
+                        ? "text-yellowpulse"
+                        : index === 0
+                          ? "text-indigospark"
+                          : "text-indigospark"
                     }`}
                   >
                     #{index + 1}
                   </span>
                   <span
                     className={`text-xs font-bold ${
-                      p.id === playerName || index === 0
-                        ? "text-white"
-                        : "text-crimsondeep"
+                      p.id === playerName ? "text-white" : "text-indigospark"
                     }`}
                   >
                     {p.name}
                   </span>
                   <span
                     className={`text-xs font-black ${
-                      p.id === playerName || index === 0
-                        ? "text-white"
-                        : "text-crimsondeep"
+                      p.id === playerName ? "text-white" : "text-indigospark"
                     }`}
                   >
                     {p.score}
@@ -99,10 +97,10 @@ export default function PlayingGame({
                 key={o}
                 onClick={() => answer(o)}
                 disabled={answered || timeLeft === 0}
-                className={`py-12 rounded-2xl font-black text-2xl border-b-4 transition-colors ${
+                className={`py-12 rounded-2xl font-black text-2xl border-2 transition-colors ${
                   answered || timeLeft === 0
-                    ? "bg-blushlight text-rosesoft border-rosesoft cursor-not-allowed"
-                    : "bg-rosebold text-white border-crimsondeep hover:bg-rosesoft active:bg-crimsondeep"
+                    ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
+                    : "bg-indigospark text-white border-indigospark hover:bg-indigoflow active:bg-indigonight"
                 }`}
               >
                 {o}
