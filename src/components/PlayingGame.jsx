@@ -1,5 +1,5 @@
 import { QUESTIONS } from "../constants";
-import { TimerIcon } from "./icons";
+import { TimerIcon, CrownIcon } from "./icons";
 
 export default function PlayingGame({
   room,
@@ -13,74 +13,86 @@ export default function PlayingGame({
   const sortedPlayers = [...onlinePlayers].sort((a, b) => b.score - a.score);
   const myPosition = sortedPlayers.findIndex((p) => p.id === playerName) + 1;
   const myScore = sortedPlayers.find((p) => p.id === playerName)?.score || 0;
+  const isLowTime = timeLeft <= 5;
 
   return (
-    <div className="min-h-screen bg-white flex flex-col p-6">
-      {/* Compact Header */}
-      <div className="flex justify-between items-center mb-10">
-        <div className="flex items-center gap-2">
-          <div className="bg-white px-4 py-2 rounded-xl border-2 border-gray-200">
-            <span className="text-sm font-black text-indigospark">
-              Soal {room.currentQuestion + 1}/{QUESTIONS.length}
+    <div className="min-h-screen bg-white flex flex-col">
+      {/* Score & Timer */}
+      <div className="bg-white px-6 py-4 flex items-center justify-between border-b-2 border-gray-200">
+        <div className="flex items-center gap-2.5">
+          <div className="bg-yellowpulse w-10 h-10 rounded-xl flex items-center justify-center">
+            <span className="text-base font-black text-white">
+              #{myPosition}
             </span>
           </div>
-          <div className="bg-white px-4 py-2 rounded-xl border-2 border-gray-200">
-            <span className="text-sm font-black text-indigospark">
-              #{myPosition} · {myScore}
-            </span>
+          <div>
+            <p className="text-gray-500 text-xs font-bold leading-tight">
+              Skor Kamu
+            </p>
+            <p className="text-indigospark text-xl font-black leading-tight">
+              {myScore}
+            </p>
           </div>
         </div>
-        <div className="bg-indigospark px-4 py-2 rounded-xl border-2 border-indigospark flex items-center gap-2">
-          <TimerIcon className="w-4 h-4 text-yellowpulse" />
-          <span className="font-black text-lg text-white">{timeLeft}s</span>
+        <div
+          className={`px-3.5 py-2 rounded-xl flex items-center gap-2 border-2 transition-all ${
+            isLowTime
+              ? "bg-red-500 border-red-600 animate-pulse"
+              : "bg-indigospark border-indigospark"
+          }`}
+        >
+          <TimerIcon
+            className={`w-4 h-4 ${isLowTime ? "text-white" : "text-yellowpulse"}`}
+          />
+          <span className="font-black text-xl text-white">{timeLeft}</span>
         </div>
       </div>
 
-      {/* Main Content Area */}
-      <div className="flex-1 flex items-center justify-center">
-        <div className="w-full max-w-2xl flex flex-col">
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col justify-between px-6 py-8">
+        <div className="space-y-6">
+          {/* Question Number */}
+          <div className="flex justify-center">
+            <div className="bg-gray-100 px-4 py-1.5 rounded-full">
+              <span className="text-xs font-semibold text-gray-600">
+                Soal {room.currentQuestion + 1} dari {QUESTIONS.length}
+              </span>
+            </div>
+          </div>
+
           {/* Question */}
-          <div className="bg-yellowpulse/10 border-2 border-yellowpulse/30 rounded-3xl p-8 mb-6">
-            <h3 className="text-3xl font-black text-indigospark text-center leading-tight">
+          <div className="bg-white border-2 border-gray-200 rounded-3xl p-6">
+            <h3 className="text-2xl font-black text-indigospark text-center leading-snug">
               {q.q}
             </h3>
           </div>
 
-          {/* Compact Leaderboard */}
-          <div className="mb-8 overflow-hidden">
-            <div className="flex gap-2 justify-center">
+          {/* Top Live Score */}
+          <div className="border border-gray-200 rounded-xl p-3 mb-6">
+            <div className="space-y-2">
               {sortedPlayers.slice(0, 3).map((p, index) => (
-                <div
-                  key={p.id}
-                  className={`px-3 py-1.5 rounded-full flex items-center gap-1.5 border-2 ${
-                    p.id === playerName
-                      ? "bg-indigospark border-indigospark"
-                      : index === 0
-                        ? "bg-yellowpulse/20 border-yellowpulse/40"
-                        : "bg-white border-gray-200"
-                  }`}
-                >
-                  <span
-                    className={`text-xs font-black ${
-                      p.id === playerName
-                        ? "text-yellowpulse"
-                        : index === 0
+                <div key={p.id} className="flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    {index === 0 ? (
+                      <CrownIcon className="w-4 h-4 text-yellowpulse" />
+                    ) : (
+                      <span className="text-xs font-bold w-4 text-center text-gray-400">
+                        {index + 1}
+                      </span>
+                    )}
+                    <span
+                      className={`text-sm font-bold truncate max-w-[140px] ${
+                        p.id === playerName
                           ? "text-indigospark"
-                          : "text-indigospark"
-                    }`}
-                  >
-                    #{index + 1}
-                  </span>
+                          : "text-gray-700"
+                      }`}
+                    >
+                      {p.name}
+                    </span>
+                  </div>
                   <span
-                    className={`text-xs font-bold ${
-                      p.id === playerName ? "text-white" : "text-indigospark"
-                    }`}
-                  >
-                    {p.name}
-                  </span>
-                  <span
-                    className={`text-xs font-black ${
-                      p.id === playerName ? "text-white" : "text-indigospark"
+                    className={`text-sm font-black ${
+                      p.id === playerName ? "text-indigospark" : "text-gray-700"
                     }`}
                   >
                     {p.score}
@@ -89,24 +101,24 @@ export default function PlayingGame({
               ))}
             </div>
           </div>
+        </div>
 
-          {/* Answer Buttons */}
-          <div className="grid grid-cols-2 gap-4">
-            {q.options.map((o) => (
-              <button
-                key={o}
-                onClick={() => answer(o)}
-                disabled={answered || timeLeft === 0}
-                className={`py-12 rounded-2xl font-black text-2xl border-2 transition-colors ${
-                  answered || timeLeft === 0
-                    ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
-                    : "bg-indigospark text-white border-indigospark hover:bg-indigoflow active:bg-indigonight"
-                }`}
-              >
-                {o}
-              </button>
-            ))}
-          </div>
+        {/* Answer Buttons */}
+        <div className="grid grid-cols-1 gap-3">
+          {q.options.map((o) => (
+            <button
+              key={o}
+              onClick={() => answer(o)}
+              disabled={answered || timeLeft === 0}
+              className={`py-5 rounded-2xl font-bold text-lg border-2 transition-all ${
+                answered || timeLeft === 0
+                  ? "bg-gray-100 text-indigospark border-gray-200 cursor-not-allowed"
+                  : "bg-indigospark text-white border-indigospark hover:bg-indigoflow hover:border-indigoflow active:scale-[0.98]"
+              }`}
+            >
+              {o}
+            </button>
+          ))}
         </div>
       </div>
     </div>

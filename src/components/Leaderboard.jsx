@@ -26,7 +26,7 @@ export default function Leaderboard({ players, onBack }) {
             sortedPlayers.map((player, index) => (
               <div
                 key={player.id}
-                className="rounded-2xl p-4 bg-white border-2 border-gray-200 transition-colors hover:border-indigospark/30"
+                className="rounded-2xl p-4 bg-white border-2 border-gray-200 transition-colors"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3 flex-1 min-w-0">

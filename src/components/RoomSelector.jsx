@@ -78,7 +78,7 @@ export default function RoomSelector({
               className={`flex-1 py-4 rounded-2xl font-bold text-base transition-colors ${
                 activeTab === "create"
                   ? "bg-indigospark text-white"
-                  : "bg-white text-indigospark border-2 border-indigospark/30"
+                  : "bg-white text-indigospark border-2 border-indigospark/30 hover:bg-yellowpulse/10 active:bg-yellowpulse/20"
               }`}
             >
               <div className="flex items-center justify-center gap-2">
@@ -97,7 +97,7 @@ export default function RoomSelector({
               className={`flex-1 py-4 rounded-2xl font-bold text-base transition-colors ${
                 activeTab === "join"
                   ? "bg-indigospark text-white"
-                  : "bg-white text-indigospark border-2 border-indigospark/30"
+                  : "bg-white text-indigospark border-2 border-indigospark/30 hover:bg-yellowpulse/10 active:bg-yellowpulse/20"
               }`}
             >
               <div className="flex items-center justify-center gap-2">

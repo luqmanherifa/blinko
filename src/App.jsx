@@ -184,7 +184,7 @@ export default function App() {
   if (!room) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
-        <p className="text-slate-600 text-base">Memuat ruangan...</p>
+        <p className="text-gray-600 text-base">Memuat ruangan...</p>
       </div>
     );
   }
