@@ -50,7 +50,7 @@ export default function PlayingGame({
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col justify-between px-6 py-8">
-        <div className="space-y-8">
+        <div className="space-y-6">
           {/* Question Number */}
           <div className="flex justify-center">
             <div className="bg-slate-100 px-4 py-1.5 rounded-full">
@@ -61,14 +61,14 @@ export default function PlayingGame({
           </div>
 
           {/* Question */}
-          <div className="bg-white border-2 border-slate-200 rounded-3xl px-6 py-14">
+          <div className="bg-white border-2 border-slate-200 rounded-3xl px-6 py-12">
             <h3 className="text-2xl font-black text-indigospark text-center leading-snug">
               {q.q}
             </h3>
           </div>
 
           {/* Top Live Score */}
-          <div className="border border-slate-300 rounded-xl p-3 mb-6">
+          <div className="border border-slate-200 rounded-xl p-3 mb-6">
             <div className="space-y-2">
               {sortedPlayers.slice(0, 3).map((p, index) => (
                 <div key={p.id} className="flex items-center justify-between">
