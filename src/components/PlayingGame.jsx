@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { QUESTIONS, QUESTION_DURATION } from "../constants";
 
@@ -10,16 +11,37 @@ export default function PlayingGame({
   answer,
 }) {
   const q = QUESTIONS[room.currentQuestion];
-
   const sortedPlayers = [...onlinePlayers].sort((a, b) => b.score - a.score);
-
   const progressMV = useMotionValue(100);
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    setIsSubmitting(false);
+  }, [room.currentQuestion]);
 
   const barColor = useTransform(progressMV, (v) => {
     if (v > 60) return "#22c55e";
     if (v > 30) return "#facc15";
     return "#ef4444";
   });
+
+  const handleAnswer = async (option) => {
+    if (isSubmitting || answered || timeLeft === 0) {
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      await answer(option);
+    } catch (error) {
+      console.error("Error submitting answer:", error);
+      setIsSubmitting(false);
+    }
+  };
+
+  const isDisabled = answered || timeLeft === 0 || isSubmitting;
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -119,8 +141,8 @@ export default function PlayingGame({
           {q.options.map((o) => (
             <button
               key={o}
-              onClick={() => answer(o)}
-              disabled={answered || timeLeft === 0}
+              onClick={() => handleAnswer(o)}
+              disabled={isDisabled}
               className={`
                 aspect-square
                 rounded-3xl
@@ -129,7 +151,7 @@ export default function PlayingGame({
                 border-2
                 transition-all
                 ${
-                  answered || timeLeft === 0
+                  isDisabled
                     ? "bg-slate-100 text-indigospark border-slate-200 cursor-not-allowed"
                     : "bg-indigospark text-white border-indigospark hover:bg-indigoflow hover:border-indigoflow active:scale-95"
                 }

@@ -21,6 +21,7 @@ export function useGameLogic(roomCode, playerName) {
   const [players, setPlayers] = useState([]);
   const [timeLeft, setTimeLeft] = useState(0);
   const [answered, setAnswered] = useState(false);
+  const [answeredQuestion, setAnsweredQuestion] = useState(null);
   const [now, setNow] = useState(Date.now());
 
   useEffect(() => {
@@ -56,9 +57,15 @@ export function useGameLogic(roomCode, playerName) {
     return onSnapshot(doc(db, "rooms", roomCode), (snap) => {
       if (!snap.exists()) return;
       setRoom(snap.data());
-      setAnswered(false);
     });
   }, [roomCode]);
+
+  useEffect(() => {
+    if (room) {
+      setAnswered(false);
+      setAnsweredQuestion(null);
+    }
+  }, [room?.currentQuestion]);
 
   useEffect(() => {
     if (!roomCode) return;
@@ -145,6 +152,7 @@ export function useGameLogic(roomCode, playerName) {
     if (!room || answered || timeLeft === 0) return;
 
     setAnswered(true);
+    setAnsweredQuestion(room.currentQuestion);
 
     const current = QUESTIONS[room.currentQuestion];
     if (value === current.correct) {
@@ -154,12 +162,15 @@ export function useGameLogic(roomCode, playerName) {
     }
   };
 
+  const isAnsweredCurrentQuestion =
+    answered && answeredQuestion === room?.currentQuestion;
+
   return {
     room,
     players,
     onlinePlayers,
     timeLeft,
-    answered,
+    answered: isAnsweredCurrentQuestion,
     startGame,
     resetRoom,
     answer,
