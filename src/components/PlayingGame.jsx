@@ -48,7 +48,7 @@ export default function PlayingGame({
     <div className="min-h-screen bg-white flex flex-col">
       {/* Leaderboard */}
       <div className="border-b border-slate-200 px-6 py-4 bg-white">
-        <div className="flex items-center gap-2 mb-3 text-xs font-bold text-slate-500 uppercase tracking-wide">
+        <div className="flex items-center gap-2 mb-3 text-xs font-bold font-heading text-slate-500 uppercase tracking-wide">
           <TrophyIcon className="w-4 h-4 text-yellowpulse" />
           <span className="mt-[4px]">Klasemen</span>
         </div>
@@ -60,7 +60,7 @@ export default function PlayingGame({
             return (
               <div
                 key={p.id}
-                className={`flex items-center justify-between px-3 py-2 rounded-lg transition-all
+                className={`flex items-center justify-between px-4 py-2 rounded-lg transition-all
                   ${
                     isMe
                       ? "bg-indigospark/5 border border-indigospark/20"
@@ -69,12 +69,12 @@ export default function PlayingGame({
                 `}
               >
                 <div className="flex items-center gap-2.5 min-w-0">
-                  <span className="w-5 text-xs font-bold text-slate-400">
-                    {index + 1}
+                  <span className="w-5 text-xs font-bold font-heading text-slate-400">
+                    #{index + 1}
                   </span>
 
                   <span
-                    className={`truncate max-w-[140px] font-semibold text-sm
+                    className={`truncate max-w-[140px] font-semibold text-xs
                     ${isMe ? "text-indigospark" : "text-slate-700"}
                   `}
                   >
@@ -82,14 +82,14 @@ export default function PlayingGame({
                   </span>
 
                   {isMe && (
-                    <span className="text-[9px] font-bold bg-indigospark text-white px-1.5 py-0.5 rounded">
+                    <span className="text-[9px] font-bold font-heading bg-indigospark text-white px-1.5 py-0.5 rounded">
                       KAMU
                     </span>
                   )}
                 </div>
 
                 <span
-                  className={`font-bold text-sm
+                  className={`font-bold font-heading text-sm
                   ${isMe ? "text-indigospark" : "text-slate-600"}
                 `}
                 >
@@ -128,10 +128,10 @@ export default function PlayingGame({
 
         {/* Question */}
         <div className="text-center space-y-2 mb-10">
-          <p className="text-xs font-bold text-slate-400 uppercase tracking-wide">
+          <p className="text-xs font-bold font-heading text-slate-400 uppercase tracking-wide">
             Soal {room.currentQuestion + 1} / {QUESTIONS.length}
           </p>
-          <h3 className="text-2xl font-extrabold text-indigospark leading-snug">
+          <h3 className="text-2xl font-extrabold font-heading text-indigospark leading-snug">
             {q.q}
           </h3>
         </div>
@@ -147,7 +147,7 @@ export default function PlayingGame({
                 aspect-square
                 rounded-3xl
                 flex items-center justify-center
-                font-extrabold text-3xl
+                font-extrabold font-heading text-3xl
                 border-2
                 transition-all
                 ${

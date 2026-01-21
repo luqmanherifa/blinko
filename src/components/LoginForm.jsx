@@ -45,8 +45,8 @@ export default function LoginForm({ onLogin, existingName }) {
             </div>
           </div>
 
-          <div className="text-center mb-10">
-            <h1 className="text-4xl font-black text-indigospark mb-2">
+          <div className="text-center mb-8">
+            <h1 className="text-5xl font-black text-indigospark mb-2 font-heading">
               <motion.span
                 className="inline-block"
                 initial={{ opacity: 0, y: 20 }}
@@ -141,7 +141,7 @@ export default function LoginForm({ onLogin, existingName }) {
                 onKeyDown={(e) => {
                   if (e.key === "Enter") handleSubmit();
                 }}
-                className={`w-full px-5 py-4 text-base border-2 rounded-2xl outline-none transition-colors ${
+                className={`w-full px-5 py-4 text-base text-indigonight placeholder:text-base placeholder:text-indigonight/50 border-2 rounded-2xl outline-none transition-colors ${
                   existingName && !isRenaming
                     ? "bg-white border-indigospark/30 text-indigonight"
                     : "bg-white border-indigospark/30 focus:border-indigospark"
@@ -163,15 +163,15 @@ export default function LoginForm({ onLogin, existingName }) {
           {existingName && !isRenaming ? (
             <button
               onClick={handleSubmit}
-              className="w-full bg-indigospark text-white py-4 rounded-2xl font-bold text-base hover:bg-indigoflow active:bg-indigonight transition-colors border-2 border-indigospark"
+              className="w-full bg-indigospark text-white py-4 rounded-2xl font-bold font-heading text-base hover:bg-indigoflow active:bg-indigonight transition-colors border-2 border-indigospark"
             >
-              Lanjut
+              Main
             </button>
           ) : (
             <div className="space-y-3">
               <button
                 onClick={handleSubmit}
-                className="w-full bg-indigospark text-white py-4 rounded-2xl font-bold text-base hover:bg-indigoflow active:bg-indigonight transition-colors border-2 border-indigospark"
+                className="w-full bg-indigospark text-white py-4 rounded-2xl font-bold font-heading text-base hover:bg-indigoflow active:bg-indigonight transition-colors border-2 border-indigospark"
               >
                 {existingName && isRenaming ? "Simpan" : "Mulai"}
               </button>
@@ -182,7 +182,7 @@ export default function LoginForm({ onLogin, existingName }) {
                     setPlayerName(existingName);
                     setIsRenaming(false);
                   }}
-                  className="w-full bg-white text-indigospark py-4 rounded-2xl font-bold text-base hover:bg-yellowpulse/10 active:bg-yellowpulse/20 transition-colors border-2 border-indigospark/30"
+                  className="w-full bg-white text-indigospark py-4 rounded-2xl font-bold font-heading text-base hover:bg-yellowpulse/10 active:bg-yellowpulse/20 transition-colors border-2 border-indigospark/30"
                 >
                   Batal
                 </button>

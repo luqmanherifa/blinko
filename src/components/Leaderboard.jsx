@@ -8,10 +8,12 @@ export default function Leaderboard({ players, onBack }) {
       <div className="w-full max-w-md flex flex-col h-[90vh]">
         {/* Header */}
         <div className="text-center mb-10">
-          <h1 className="text-2xl font-extrabold text-indigospark mb-2">
+          <h1 className="text-2xl font-extrabold font-heading text-indigospark mb-2">
             Papan Peringkat
           </h1>
-          <p className="text-indigoflow text-base">Peringkat pemain terbaik</p>
+          <p className="text-indigoflow/50 text-base">
+            Peringkat pemain terbaik
+          </p>
         </div>
 
         {/* Leaderboard List */}
@@ -30,11 +32,11 @@ export default function Leaderboard({ players, onBack }) {
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3 flex-1 min-w-0">
-                    <span className="text-xl font-extrabold flex-shrink-0 text-indigospark">
+                    <span className="text-xl font-extrabold font-heading flex-shrink-0 text-indigospark">
                       #{index + 1}
                     </span>
                     <div className="min-w-0 flex-1">
-                      <span className="font-bold text-base block truncate text-indigospark">
+                      <span className="font-bold font-heading text-base block truncate text-indigospark">
                         {player.name}
                       </span>
                       <span className="text-xs font-medium block text-slate-500">
@@ -50,13 +52,13 @@ export default function Leaderboard({ players, onBack }) {
                     </div>
                   </div>
                   <div className="flex items-center gap-2 flex-shrink-0 ml-2 text-indigospark">
-                    <span className="text-lg font-bold tabular-nums">
+                    <span className="text-lg font-bold font-heading tabular-nums">
                       {player.totalWins}
                     </span>
 
                     <CrownIcon
                       className={`w-5 h-5 ${
-                        index < 3 ? "text-yellowpulse" : "text-indigospark/40"
+                        index < 3 ? "text-yellowpulse" : "text-yellowpulse/50"
                       }`}
                     />
                   </div>
@@ -69,7 +71,7 @@ export default function Leaderboard({ players, onBack }) {
         {/* Back Button */}
         <button
           onClick={onBack}
-          className="w-full bg-indigospark text-white py-4 rounded-2xl font-bold text-base hover:bg-indigoflow active:bg-indigonight transition-colors border-2 border-indigospark"
+          className="w-full bg-indigospark text-white py-4 rounded-2xl font-bold font-heading text-base hover:bg-indigoflow active:bg-indigonight transition-colors border-2 border-indigospark"
         >
           Kembali
         </button>

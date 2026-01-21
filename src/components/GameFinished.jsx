@@ -16,7 +16,7 @@ export default function GameFinished({
       <div className="w-full max-w-md flex flex-col h-[90vh]">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-extrabold text-indigospark mb-2">
+          <h1 className="text-2xl font-extrabold font-heading text-indigospark mb-2">
             Game Selesai!
           </h1>
           <p className="text-indigoflow text-base">Hasil pertandingan</p>
@@ -29,14 +29,16 @@ export default function GameFinished({
               <div className="flex items-center gap-3">
                 <CrownIcon className="w-10 h-10 text-yellowpulse" />
                 <div>
-                  <p className="text-indigoflow text-sm font-bold">Pemenang</p>
-                  <p className="text-indigospark text-2xl font-extrabold">
+                  <p className="text-indigoflow text-sm font-bold font-heading">
+                    Pemenang
+                  </p>
+                  <p className="text-indigospark text-2xl font-extrabold font-heading">
                     {winners[0].name}
                   </p>
                 </div>
               </div>
               <div className="bg-yellowpulse/30 rounded-xl px-4 py-2 border-2 border-yellowpulse/50">
-                <p className="text-indigospark text-xl font-extrabold">
+                <p className="text-indigospark text-xl font-extrabold font-heading">
                   {winners[0].score}
                 </p>
               </div>
@@ -46,7 +48,7 @@ export default function GameFinished({
           <div className="bg-yellowpulse/10 border-2 border-yellowpulse/30 rounded-2xl p-5 mb-6">
             <div className="flex items-center gap-3 mb-3">
               <CrownIcon className="w-8 h-8 text-indigospark" />
-              <p className="text-indigospark text-base font-bold">
+              <p className="text-indigospark text-base font-bold font-heading">
                 Hasil Seri!
               </p>
             </div>
@@ -56,10 +58,10 @@ export default function GameFinished({
                   key={w.id}
                   className="bg-white border-2 border-slate-200 rounded-xl p-3 flex items-center justify-between"
                 >
-                  <p className="text-indigospark text-base font-extrabold">
+                  <p className="text-indigospark text-base font-extrabold font-heading">
                     {w.name}
                   </p>
-                  <p className="text-indigospark text-lg font-extrabold">
+                  <p className="text-indigospark text-lg font-extrabold font-heading">
                     {w.score}
                   </p>
                 </div>
@@ -70,7 +72,7 @@ export default function GameFinished({
 
         {/* Final Scores */}
         <div className="flex-1 overflow-hidden flex flex-col mb-6">
-          <h4 className="font-bold text-indigospark text-lg mb-4">
+          <h4 className="font-bold font-heading text-indigospark text-lg mb-4">
             Skor Akhir
           </h4>
           <div className="flex-1 overflow-y-auto space-y-2">
@@ -82,17 +84,17 @@ export default function GameFinished({
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <span
-                      className={`text-xl font-extrabold ${
+                      className={`text-xl font-extrabold font-heading ${
                         index < 3 ? "text-yellowpulse" : "text-indigospark"
                       }`}
                     >
                       #{index + 1}
                     </span>
-                    <span className="font-bold text-base text-indigospark">
+                    <span className="font-bold font-heading text-base text-indigospark">
                       {p.name}
                     </span>
                   </div>
-                  <span className="text-lg font-extrabold text-indigospark">
+                  <span className="text-lg font-extrabold font-heading text-indigospark">
                     {p.score}
                   </span>
                 </div>
@@ -106,7 +108,7 @@ export default function GameFinished({
           {isGameMaster && (
             <button
               onClick={resetRoom}
-              className="w-full bg-indigospark text-white py-4 rounded-2xl font-bold text-base hover:bg-indigoflow active:bg-indigonight transition-colors border-2 border-indigospark flex items-center justify-center gap-2"
+              className="w-full bg-indigospark text-white py-4 rounded-2xl font-bold font-heading text-base hover:bg-indigoflow active:bg-indigonight transition-colors border-2 border-indigospark flex items-center justify-center gap-2"
             >
               <PlayIcon className="w-5 h-5 text-yellowpulse" />
               Main Lagi
@@ -114,7 +116,7 @@ export default function GameFinished({
           )}
           <button
             onClick={leaveRoom}
-            className="w-full bg-white text-indigospark py-4 rounded-2xl font-bold text-base hover:bg-yellowpulse/10 active:bg-yellowpulse/20 transition-colors border-2 border-indigospark/30 flex items-center justify-center gap-2"
+            className="w-full bg-white text-indigospark py-4 rounded-2xl font-bold font-heading text-base hover:bg-yellowpulse/10 active:bg-yellowpulse/20 transition-colors border-2 border-indigospark/30 flex items-center justify-center gap-2"
           >
             <ExitIcon className="w-5 h-5" />
             Keluar

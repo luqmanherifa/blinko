@@ -112,7 +112,7 @@ export default function App() {
       const roomSnap = await getDoc(roomRef);
 
       if (roomSnap.exists()) {
-        alert("Kode ruangan sudah digunakan! Gunakan kode lain.");
+        alert("Kode arena sudah digunakan! Gunakan kode lain.");
         return;
       }
 
@@ -130,7 +130,7 @@ export default function App() {
       setIsGameMaster(true);
     } catch (error) {
       console.error("Error creating room:", error);
-      alert("Gagal membuat ruangan. Coba lagi.");
+      alert("Gagal membuat arena. Coba lagi.");
     }
   };
 
@@ -140,7 +140,7 @@ export default function App() {
       const roomSnap = await getDoc(roomRef);
 
       if (!roomSnap.exists()) {
-        alert("Ruangan tidak ditemukan!");
+        alert("Arena tidak ditemukan!");
         return;
       }
 
@@ -148,7 +148,7 @@ export default function App() {
       setIsGameMaster(false);
     } catch (error) {
       console.error("Error joining room:", error);
-      alert("Gagal gabung ruangan. Cek kode dan coba lagi.");
+      alert("Gagal gabung arena. Cek kode dan coba lagi.");
     }
   };
 
@@ -184,7 +184,7 @@ export default function App() {
   if (!room) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
-        <p className="text-slate-600 text-base">Memuat ruangan...</p>
+        <p className="text-slate-600 text-base">Memuat arena...</p>
       </div>
     );
   }
